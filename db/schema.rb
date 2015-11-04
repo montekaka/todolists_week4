@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104051903) do
+ActiveRecord::Schema.define(version: 20151104053152) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "gender"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20151104051903) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
+# Could not dump table "todo_lists" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
