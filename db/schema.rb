@@ -37,8 +37,13 @@ ActiveRecord::Schema.define(version: 20151104053611) do
 
   add_index "todo_items", ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
 
-# Could not dump table "todo_lists" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "todo_lists", force: :cascade do |t|
+    t.string   "list_name"
+    t.date     "list_due_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
