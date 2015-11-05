@@ -20,4 +20,8 @@ class Profile < ActiveRecord::Base
   		errors.add(:gender, "can not have the first name Sue")
   	end
   end
+
+  def self.get_all_profiles(min_dob, max_dob)
+    self.where("birth_year BETWEEN :min_dob AND :max_dob", min_dob: min_dob, max_dob: max_dob).order(birth_year: :asc)
+  end
 end

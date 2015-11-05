@@ -288,9 +288,17 @@ describe "Assignment" do
         it "does not allow a User without a username" do
           expect(User.new(:username=> "")).to_not be_valid
         end
+
         it "does not allow a Profile with a null first and last name" do
           expect(Profile.new(:first_name=>nil, :last_name=>nil, :gender=>"male")).to_not be_valid
         end
+        it "allows a Profile with a null first name when last name present" do
+          expect(Profile.new(:first_name=>nil, :last_name=>"Smith", :gender=>"male")).to be_valid
+        end
+        it "allows a Profile with a null last name when first name present" do
+          expect(Profile.new(:first_name=>"Joe", :last_name=>nil, :gender=>"male")).to be_valid
+        end
+
         it "does not allow a Profile with a gender other than male or female " do
           expect(Profile.new(:first_name=>"first", :last_name=>"last", :gender=>"neutral")).to_not be_valid
         end
@@ -367,10 +375,9 @@ describe "Assignment" do
         end
       end
 
-      context "rq14" do
-        context "Profile has a get_all_profiles method" do
-          subject(:profile) { Profile.new }
-          it { is_expected.to respond_to(:get_all_profiles) }
+      context "rq14 - Profile" do
+        it "should have a get_all_profiles class method" do
+          expect(Profile).to respond_to(:get_all_profiles)
         end
         it "will return a list of profiles between requested birth years in ascending order" do
           user = User.create(:username=>"testUser", :password_digest=>"xxxx")
@@ -385,7 +392,7 @@ describe "Assignment" do
             end
             profile = Profile.create(:user_id=>user.id, :gender=>"male", :birth_year=>birthYear, :first_name=>"User #{i}", :last_name=>"Smith#{i}")
           end
-          profileGroup = Profile.new.get_all_profiles(startYear, testYear)
+          profileGroup = Profile.get_all_profiles(startYear, testYear)
           expect(profileGroup.length).to be(testCount)
           # test that results are sorted by birthyear and are ascending
           year = startYear
