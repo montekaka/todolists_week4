@@ -215,7 +215,7 @@ artifacts for `TodoLists` and `TodoItems`.
 
     * Access `:todo_list` resources at URI `/todo_lists`
     * Access `:todo_item` resources at URI `/todo_lists/:todo_list_id/todo_items`
-    * Make the `todo_list#index` action the root of the application
+    * Make the `todo_lists#index` action the root of the application
 
     (Hint: refer to module 4, lesson 1, lecture:`Nested Resources: Part1` for 
     details on how this is done)
