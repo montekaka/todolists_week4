@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'New Todo Item', new_todo_list_todo_item_path(@todo_list) %>
+<p><%= @todo_list.list_name%></p>
+<p><%= @todo_list.list_due_date%></p>
+<p><%= link_to 'New Todo Item', new_todo_list_todo_item_path(@todo_list) %></p>
+<p><%= link_to 'Back', root_path %></p>
 <table>
   <thead>
     <tr>
