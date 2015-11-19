@@ -28,7 +28,7 @@ feature "Module 4 Pagination Test" do
         scenario "List summary limited to 8 lists with pagination" do
             user = User.where(username: "rich").first
             userLists = user.authenticate("123abc").todo_lists
-            totalLists = userLists.count
+            totalLists = userLists.count            
             numPages = (totalLists / 8.to_f).ceil
             visit(login_path)
             fill_in "user[username]", with: "rich"
