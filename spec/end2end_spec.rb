@@ -121,7 +121,8 @@ feature "Module 4 End-2-End Test" do
             expect(page).to have_content("New Todo List")       # confirm location
             expect(page).to have_button("Create Todo list")
 
-            list = TodoList.new(list_name:'New List', list_due_date:Date.today)
+            p User.find_by_username("rich").todo_lists.count
+            list = TodoList.new(list_name:'New List', list_due_date:Date.today)            
             select list.list_due_date.year, from: 'todo_list[list_due_date(1i)]'
             select list.list_due_date.strftime("%B"), from: 'todo_list[list_due_date(2i)]'
             select list.list_due_date.day, from: 'todo_list[list_due_date(3i)]'
@@ -131,7 +132,7 @@ feature "Module 4 End-2-End Test" do
             click_button("Create Todo list")
 
             expect(page).to have_content("Todo list was successfully created.")    # confirm location
-
+            p User.find_by_username("rich").todo_lists.count
             # confirmation test that new list has increased total list count by 1
             expect(user.authenticate("123abc").todo_lists.count).to eq(totalLists + 1)
             
